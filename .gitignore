@@ -1,0 +1,7 @@
+# Roblox place files (the map lives in Team Create, not GitHub)
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+sourcemap.json
+.DS_Store
