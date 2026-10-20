@@ -32,7 +32,7 @@ local function label(text: string, size: number, y: number, parent: Instance): T
 	l.BackgroundTransparency = 1
 	l.Size = UDim2.new(1, 0, 0, size + 6)
 	l.Position = UDim2.new(0, 0, 0, y)
-	l.Font = Enum.Font.Fantasy
+	l.Font = Config.TextFont
 	l.TextSize = size
 	l.TextColor3 = GHOST_TEXT
 	l.TextStrokeTransparency = 0.5
@@ -116,7 +116,7 @@ function GhostBoardUI.Start()
 			button.Size = UDim2.new(width, -4, 1, 0)
 			button.BackgroundColor3 = KEY_BG
 			button.TextColor3 = KEY_TEXT
-			button.Font = Enum.Font.Fantasy
+			button.Font = Config.TextFont
 			button.TextScaled = true
 			button.Text = entry.Label
 			button.AutoButtonColor = true
@@ -151,7 +151,7 @@ function GhostBoardUI.Start()
 	toggle.BackgroundColor3 = BG
 	toggle.BackgroundTransparency = 0.25
 	toggle.TextColor3 = GHOST_TEXT
-	toggle.Font = Enum.Font.Fantasy
+	toggle.Font = Config.TextFont
 	toggle.TextSize = 18
 	toggle.Text = "Hide board"
 	toggle.Parent = gui

@@ -114,7 +114,7 @@ local function buildBoard()
 		label.BackgroundTransparency = 1
 		label.Text = entry.Label
 		label.TextScaled = true
-		label.Font = Enum.Font.Fantasy
+		label.Font = Config.TextFont
 		label.TextColor3 = LETTER_COLOR
 		label.Parent = gui
 

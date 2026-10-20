@@ -2,6 +2,8 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+
 local GhostSecretUI = {}
 
 local localPlayer = Players.LocalPlayer
@@ -27,7 +29,7 @@ function GhostSecretUI.Start()
 	local hint = Instance.new("TextLabel")
 	hint.BackgroundTransparency = 1
 	hint.Size = UDim2.new(1, 0, 0, 28)
-	hint.Font = Enum.Font.Fantasy
+	hint.Font = Config.TextFont
 	hint.TextSize = 16
 	hint.TextColor3 = Color3.fromRGB(190, 220, 255)
 	hint.Text = "Its true name. Spell it for them:"
@@ -37,7 +39,7 @@ function GhostSecretUI.Start()
 	nameLabel.BackgroundTransparency = 1
 	nameLabel.Position = UDim2.new(0, 0, 0, 28)
 	nameLabel.Size = UDim2.new(1, 0, 0, 50)
-	nameLabel.Font = Enum.Font.Fantasy
+	nameLabel.Font = Config.TextFont
 	nameLabel.TextSize = 38
 	nameLabel.TextColor3 = Color3.fromRGB(220, 40, 40)
 	nameLabel.TextStrokeTransparency = 0.3

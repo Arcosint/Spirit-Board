@@ -3,26 +3,30 @@
 --   /revive  bring every ghost back to life
 --   /relics  count every relic as placed (skip straight to the naming part)
 --   /name    tells you the demon's name (so you can test banishing alone)
+--   /scare   the demon takes you: plays the full jumpscare and kills you
+--   /haunt   plays one of the random (harmless) scares on you right now
+--   /event X fires the nearest placed house event of that kind (crawler, figure, mirror, writing, footsteps)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TextChatService = game:GetService("TextChatService")
 
 local GhostService = require(script.Parent.GhostService)
 local RelicService = require(script.Parent.RelicService)
+local DemonService = require(script.Parent.DemonService)
 local RoundService = require(script.Parent.RoundService)
 local Remotes = require(script.Parent.Remotes)
 
 local DevCommands = {}
 
-local function makeCommand(name: string, alias: string, handler: (Player) -> ())
+local function makeCommand(name: string, alias: string, handler: (Player, string) -> ())
 	local command = Instance.new("TextChatCommand")
 	command.Name = name
 	command.PrimaryAlias = alias
 	command.Parent = TextChatService
-	command.Triggered:Connect(function(source: TextSource)
+	command.Triggered:Connect(function(source: TextSource, text: string)
 		local player = Players:GetPlayerByUserId(source.UserId)
 		if player then
-			handler(player)
+			handler(player, text)
 		end
 	end)
 end
@@ -52,7 +56,21 @@ function DevCommands.Start()
 		notify:FireClient(player, "[dev] The name is " .. RoundService.GetDemonName())
 	end)
 
-	print("[Dev] Test commands ready: /die /revive /relics /name")
+	makeCommand("DevScare", "/scare", function(player)
+		DemonService.Take(player)
+	end)
+
+	local haunt = Remotes.Event("Haunt")
+	makeCommand("DevHaunt", "/haunt", function(player)
+		haunt:FireClient(player)
+	end)
+
+	local event = Remotes.Event("Event")
+	makeCommand("DevEvent", "/event", function(player, text)
+		event:FireClient(player, string.match(text or "", "^%S+%s+(%S+)") or "crawler")
+	end)
+
+	print("[Dev] Test commands ready: /die /revive /relics /name /scare /haunt /event")
 end
 
 return DevCommands

@@ -3,6 +3,8 @@ local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+
 local BanishUI = {}
 
 local localPlayer = Players.LocalPlayer
@@ -29,7 +31,7 @@ function BanishUI.Start()
 	local heading = Instance.new("TextLabel")
 	heading.BackgroundTransparency = 1
 	heading.Size = UDim2.new(1, 0, 0, 40)
-	heading.Font = Enum.Font.Fantasy
+	heading.Font = Config.TextFont
 	heading.TextSize = 24
 	heading.TextColor3 = Color3.fromRGB(235, 225, 210)
 	heading.Text = "Speak its true name"
@@ -42,7 +44,7 @@ function BanishUI.Start()
 	box.BackgroundColor3 = Color3.fromRGB(214, 190, 150)
 	box.TextColor3 = Color3.fromRGB(45, 28, 18)
 	box.PlaceholderText = "the name the dead spelled..."
-	box.Font = Enum.Font.Fantasy
+	box.Font = Config.TextFont
 	box.TextSize = 24
 	box.ClearTextOnFocus = false
 	box.Text = ""
@@ -56,7 +58,7 @@ function BanishUI.Start()
 		b.Size = UDim2.new(0.4, 0, 0, 40)
 		b.BackgroundColor3 = color
 		b.TextColor3 = Color3.fromRGB(235, 225, 210)
-		b.Font = Enum.Font.Fantasy
+		b.Font = Config.TextFont
 		b.TextSize = 22
 		b.Text = label
 		b.Parent = panel

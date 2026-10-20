@@ -19,7 +19,7 @@ local function text(parent: Instance, size: number, pos: UDim2, height: number):
 	l.AnchorPoint = Vector2.new(0.5, 0)
 	l.Position = pos
 	l.Size = UDim2.new(0.9, 0, 0, height)
-	l.Font = Enum.Font.Fantasy
+	l.Font = Config.TextFont
 	l.TextSize = size
 	l.TextColor3 = TEXT
 	l.TextStrokeTransparency = 0.4
